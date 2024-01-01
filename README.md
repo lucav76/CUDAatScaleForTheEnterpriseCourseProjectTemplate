@@ -1,9 +1,41 @@
 # CUDAatScaleForTheEnterpriseCourseProjectTemplate
-This is a template for the course project for the CUDA at Scale for the Enterprise
+This is the submission of **Luca Venturi** for the course project for the CUDA at Scale for the Enterprise
 
 ## Project Description
+This program is intended to implement edge detection in a video, using Scharr, for example as part of a lane detection algorithm.
 
-Beyond just being a template for course members, this project can be used by non-course members as the general structure for CUDA projects.
+The program accepts two arguments:
+- The input video file
+- The output video file
+
+It goes through each frame using OpenCV, then, using NPP:
+- it extracts the green channel
+- it applies Scharr to detect the edges
+- it generates a grayscale frame, simply copying the new green channel on each RGB channels
+
+The grayscale frame is then written to the output file.
+
+For the allocations, the program uses 2D memory functions, which are faster when padding is required
+
+## Building it and testing it
+The program has been developed and tested on WSL, using Ubuntu 18.04.
+
+To build it, you can use the command **make build**.
+
+To run it, you have to supply the two arguments. You could do it in different ways, for example:
+- ./run.sh
+- make run ARGS="data/video.mp4 data/out.mp4"
+- ./luca data/video.mp4 data/out.mp4
+
+## Example of input
+![random input frame](data/input.jpg)
+
+[Click here to view the input video](data/video.mp4)
+
+## Example of output
+![random output frame](data/output.jpg)
+
+[Click here to view the output video](data/out.mp4)
 
 ## Code Organization
 
